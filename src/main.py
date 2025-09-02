@@ -23,38 +23,36 @@ caracteres = {
     "simbolos_especiais": string.punctuation
 }
 
+opcoes_de_caracteres = [
+    ("letras_minusculas", "Deseja usar letras minúsculas? "),
+    ("letras_maiusculas", "Deseja usar letras maiúsculas? "),
+    ("numeros", "Deseja usar números? "),
+    ("simbolos_especiais", "Deseja usar caracteres especiais? ")
+]
+
 # 3. Interagir com o usuário para obter as configurações da senha
 print("\nBem-vind@ ao Gerador de Senhas!")
 
 # Solicita o tamanho da senha e valida se o valor é um número inteiro
 try:
     comprimento_senha = int(input("Informe o tamanho que deseja para a senha: "))
+    if comprimento_senha <= 0:
+        print("\nERRO: O tamanho da senha deve ser um número maior que zero.")
+        exit()
 except ValueError:
     # Caso o valor não seja um número, exibe um erro e encerra o programa
     print("\nERRO: O valor informado não é um número válido.")
     exit()
 
-if comprimento_senha <= 0:
-    print("\nERRO: O tamanho da senha deve ser um número maior que zero.")
-    exit()
-
 # Pergunta ao usuário quais tipos de caracteres ele deseja incluir na senha
 print("\nResponda com 's' para sim ou 'n' para não.")
-usar_letras_minusculas = perguntar_sim_nao("Deseja usar letras minúsculas? ")
-usar_letras_maiusculas = perguntar_sim_nao("Deseja usar letras maiúsculas? ")
-usar_numeros = perguntar_sim_nao("Deseja usar números? ")
-usar_caracteres_especiais = perguntar_sim_nao("Deseja usar caracteres especiais? ")
 
 # 4. Construir a base de caracteres com base nas escolhas do usuário
 caracteres_escolhidos = ''
-if usar_letras_minusculas:
-    caracteres_escolhidos += caracteres["letras_minusculas"]
-if usar_letras_maiusculas:
-    caracteres_escolhidos += caracteres["letras_maiusculas"]
-if usar_numeros:
-    caracteres_escolhidos += caracteres["numeros"]
-if usar_caracteres_especiais:
-    caracteres_escolhidos += caracteres["simbolos_especiais"]
+
+for chave, pergunta in opcoes_de_caracteres:
+    if perguntar_sim_nao(pergunta):
+        caracteres_escolhidos += caracteres[chave]
 
 # Verificação de segurança: garante que o usuário escolheu pelo menos uma opção
 if not caracteres_escolhidos:
