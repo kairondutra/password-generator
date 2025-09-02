@@ -1,6 +1,18 @@
-# 1. Importar as bibliotecas necessárias
+# 1. Importar as bibliotecas
 import random
 import string
+
+# Função para perguntas de sim/não
+def perguntar_sim_nao(pergunta):
+    """Exibe uma pergunta e retorna True para 's' e False para 'n'."""
+    while True:
+        resposta = input(pergunta).lower()
+        if resposta == 's':
+            return True
+        elif resposta == 'n':
+            return False
+        else:
+            print("\nERRO: Resposta inválida. Por favor, digite 's' para sim ou 'n' para não.")
 
 # 2. Definir os conjuntos de caracteres disponíveis
 # Usamos a biblioteca 'string' para ter acesso fácil a estes conjuntos sem precisar digitá-los.
@@ -28,10 +40,10 @@ if comprimento_senha <= 0:
 
 # Pergunta ao usuário quais tipos de caracteres ele deseja incluir na senha
 print("\nResponda com 's' para sim ou 'n' para não.")
-usar_letras_minusculas = input("Deseja usar letras minúsculas? ").lower() == "s"
-usar_letras_maiusculas = input("Deseja usar letras maiúsculas? ").lower() == "s"
-usar_numeros = input("Deseja usar números? ").lower() == "s"
-usar_caracteres_especiais = input("Deseja usar caracteres especiais? ").lower() == "s"
+usar_letras_minusculas = perguntar_sim_nao("Deseja usar letras minúsculas? ")
+usar_letras_maiusculas = perguntar_sim_nao("Deseja usar letras maiúsculas? ")
+usar_numeros = perguntar_sim_nao("Deseja usar números? ")
+usar_caracteres_especiais = perguntar_sim_nao("Deseja usar caracteres especiais? ")
 
 # 4. Construir a base de caracteres com base nas escolhas do usuário
 caracteres_escolhidos = ''
