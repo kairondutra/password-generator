@@ -22,6 +22,10 @@ except ValueError:
     print("\nERRO: O valor informado não é um número válido.")
     exit()
 
+if comprimento_senha <= 0:
+    print("\nERRO: O tamanho da senha deve ser um número maior que zero.")
+    exit()
+
 # Pergunta ao usuário quais tipos de caracteres ele deseja incluir na senha
 print("\nResponda com 's' para sim ou 'n' para não.")
 usar_letras_minusculas = input("Deseja usar letras minúsculas? ").lower() == "s"
